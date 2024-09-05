@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mint - punkPOTUS</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div id="networkStatus"></div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">punkPOTUS</a></li>
+                <li><a href="/mint/">Mint</a></li>
+                <li><a href="/tokenomics/">Tokenomics</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/press/">Press</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mint punkPOTUS</title>
+  <style>
+    .left-container {
+      width: 500px;
+      text-align: left;
+    }
+    .controls {
+      width: 300px;
+    }
+    .control-group {
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #333;
+      margin-top: 0;
+    }
+    h4 {
+      color: #555;
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #666;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    #message {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 4px;
+      font-weight: bold;
+
+    .status-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    .status-value {
+      font-weight: bold;
+    }
+    #networkStatus {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    #connectWallet {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+      margin-bottom: 20px;
+    }
+    #connectWallet:hover {
+      background-color: #0056b3;
+    }
+    #walletStatus {
+      margin-bottom: 20px;
+      font-weight: lighter;
+    }
+  </style>
+</head>
+<div id="networkStatus"></div>
+<body>
+<div id="networkStatus"></div>
+  <div class="left-container">
+    <h1>punkPOTUS on Polygon</h1>
+    <p>punkPOTUS won't make you rich or famous. Ok. Maybe famous.</p>
+    <h3>Activation Condition</h3>
+    <p>If Kamala Harris does not win the 2024 election, the seed value will remain unset, and the punkPOTUS NFT will display the default "Brat Candidate" image.</p>
+    <h3>Mint Details</h3>
+    <p>Mint Cost: 24 POL per token</p>
+    <p>Mint Quantity: 24 tokens per transaction</p>
+    <p>Smart Contract Address: <a href="https://polygonscan.com/address/0x0892B028c28E0106c6Ee23150a0e8AeB004a82e8#code" target="_blank">0x0892B028c28E0106c6Ee23150a0e8AeB004a82e8</a></p>
+  </div>
+
+  <div class="controls">
+    <h1>Minting Controls</h1>
+    <button id="connectWallet">Connect Wallet</button>
+    <div id="walletStatus">Wallet not connected</div>
+    <div class="control-group">
+      <h4>Contract Status</h4>
+      <div class="status-item">
+        <span>SuperSeed Set:</span>
+        <span id="superSeedStatus" class="status-value">Loading...</span>
+      </div>
+      <div class="status-item">
+        <span>Total Supply:</span>
+        <span id="totalSupply" class="status-value">Loading...</span>
+      </div>
+      <div class="status-item">
+        <span>Sale Status:</span>
+        <span id="saleStatus" class="status-value">Loading...</span>
+      </div>
+    </div>
+    <div class="control-group">
+      <h4>Minting</h4>
+      <label for="mintAmount">Amount to Mint (max 24):</label>
+      <input type="number" id="mintAmount" min="1" max="24" value="1">
+      <button id="mintButton" disabled>Mint</button>
+    </div>
+    <div id="message"></div>
+  </div>
+</div>
+
+<script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js"></script>
+<script>
+  const contractABI = [
+    {
+      "inputs": [],
+      "name": "isSuperSeedSet",
+      "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "saleON",
+      "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [{"internalType": "uint256", "name": "_amount", "type": "uint256"}],
+      "name": "mint",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {"indexed": true, "internalType": "address", "name": "minter", "type": "address"},
+        {"indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256"},
+        {"indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256"}
+      ],
+      "name": "Minted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [{"indexed": false, "internalType": "uint256", "name": "superSeed", "type": "uint256"}],
+      "name": "SuperSeedSet",
+      "type": "event"
+    }
+  ]
+
+  const contractAddresses = {
+    polygon: '0x0892B028c28E0106c6Ee23150a0e8AeB004a82e8'
+  };
+
+  let provider;
+  let signer;
+  let contract;
+  let connectedAccount;
+
+  const networks = {
+    1: 'Ethereum Mainnet',
+    5: 'Goerli Testnet',
+    1337: 'Localhost',
+    137: 'Polygon Mainnet'
+  };
+
+  async function init() {
+    if (typeof window.ethereum !== 'undefined') {
+      provider = new ethers.providers.Web3Provider(window.ethereum);
+      updateWalletStatus();
+      setupEventListeners();
+
+      // Check if already connected
+      const accounts = await provider.listAccounts();
+      if (accounts.length > 0) {
+        await connectWallet();
+      }
+    } else {
+      console.log('Please install MetaMask!');
+      showMessage('Please install MetaMask to use this dApp.', 'error');
+    }
+  }
+
+  async function updateContractStatus() {
+    if (!contract) {
+      console.log('Contract not initialized');
+      return;
+    }
+
+    try {
+      const [isSuperSeedSet, totalSupply, saleON] = await Promise.all([
+        contract.isSuperSeedSet(),
+        contract.totalSupply(),
+        contract.saleON()
+      ]);
+
+      document.getElementById('superSeedStatus').textContent = isSuperSeedSet ? 'Yes' : 'No';
+      document.getElementById('totalSupply').textContent = totalSupply.toString();
+      document.getElementById('saleStatus').textContent = saleON ? 'Active' : 'Inactive';
+    } catch (error) {
+      console.error('Error updating contract status:', error);
+      showMessage('Error fetching contract status.', 'error');
+    }
+  }
+
+  // This function should be called after successful wallet connection
+  async function setupContractAndStatus() {
+    await setupContract();
+    await updateContractStatus();
+  }
+
+  // Update the connectWallet function to call setupContractAndStatus
+  async function connectWallet() {
+    try {
+      await provider.send("eth_requestAccounts", []);
+      signer = provider.getSigner();
+      connectedAccount = await signer.getAddress();
+
+      await setupContractAndStatus();
+      updateNetworkStatus();
+      updateWalletStatus();
+
+      window.ethereum.on('chainChanged', handleChainChanged);
+      window.ethereum.on('accountsChanged', handleAccountsChanged);
+    } catch (error) {
+      console.error('User denied account access or error occurred:', error);
+      showMessage('Failed to connect wallet.', 'error');
+    }
+    startContractStatusUpdates();
+  }
+
+  async function setupContract() {
+    const network = await provider.getNetwork();
+    const contractAddress = getContractAddress(network.chainId);
+    contract = new ethers.Contract(contractAddress, contractABI, signer);
+  }
+
+  // Add this function to periodically update the contract status
+  function startContractStatusUpdates() {
+    updateContractStatus(); // Initial update
+    setInterval(updateContractStatus, 30000); // Update every 30 seconds
+  }
+
+  function getContractAddress(chainId) {
+    switch(chainId) {
+      case 1: return contractAddresses.mainnet;
+      case 5: return contractAddresses.goerli;
+      case 1337: return contractAddresses.localhost;
+      case 137: return contractAddresses.polygon;
+      default: throw new Error('Unsupported network');
+    }
+  }
+
+  async function updateNetworkStatus() {
+    const network = await provider.getNetwork();
+    const networkName = networks[network.chainId] || 'Unknown Network';
+    const networkStatus = document.getElementById('networkStatus');
+    networkStatus.textContent = `Connected to: ${networkName}`;
+    networkStatus.style.backgroundColor = network.chainId === 137 ? '#d4edda' : '#fff3cd';
+    networkStatus.style.color = network.chainId === 137 ? '#155724' : '#856404';
+  }
+
+  function updateWalletStatus() {
+    const walletStatus = document.getElementById('walletStatus');
+    const mintButton = document.getElementById('mintButton');
+    const connectWalletButton = document.getElementById('connectWallet');
+
+    if (connectedAccount) {
+      walletStatus.textContent = `Connected: ${connectedAccount.substring(0, 6)}...${connectedAccount.substring(38)}`;
+      mintButton.disabled = false;
+      connectWalletButton.textContent = 'Wallet Connected';
+      connectWalletButton.disabled = true;
+    } else {
+      walletStatus.textContent = 'Wallet not connected';
+      mintButton.disabled = true;
+      connectWalletButton.textContent = 'Connect Wallet';
+      connectWalletButton.disabled = false;
+    }
+  }
+
+  function handleAccountsChanged(accounts) {
+    if (accounts.length === 0) {
+      console.log('Please connect to MetaMask.');
+      connectedAccount = null;
+      contract = null;
+    } else if (accounts[0] !== connectedAccount) {
+      connectedAccount = accounts[0];
+      setupContract();
+    }
+    updateWalletStatus();
+    updateContractStatus();
+  }
+
+  function handleChainChanged() {
+    window.location.reload();
+  }
+
+  function setupEventListeners() {
+    document.getElementById('connectWallet').addEventListener('click', connectWallet);
+    document.getElementById('mintButton').addEventListener('click', mint);
+  }
+
+  async function mint() {
+    if (!contract) {
+      showMessage('Please connect your wallet first.', 'error');
+      return;
+    }
+
+    const mintAmount = document.getElementById('mintAmount').value;
+    if (mintAmount < 1 || mintAmount > 24) {
+      showMessage('Please enter a valid amount between 1 and 24.', 'error');
+      return;
+    }
+
+    try {
+      const tx = await contract.mint(mintAmount);
+      showMessage('Transaction sent. Waiting for confirmation...', 'success');
+
+      try {
+        await tx.wait();
+        showMessage(`Successfully minted ${mintAmount} token(s)!`, 'success');
+      } catch (confirmError) {
+        console.error('Error during transaction confirmation:', confirmError);
+        showMessage('Transaction failed during confirmation. Please check your wallet for details.', 'error');
+      }
+
+      updateContractStatus();
+    } catch (error) {
+      console.error('Error minting:', error);
+      showMessage(`Error minting: ${error.message}`, 'error');
+    }
+  }
+
+  function showMessage(message, type) {
+    const messageElement = document.getElementById('message');
+    messageElement.textContent = message;
+    messageElement.className = type;
+  }
+
+  init();
+</script>
+</body>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 punkPOTUS. All rights reserved.</p>
+    </footer>
+</body>
+</html>

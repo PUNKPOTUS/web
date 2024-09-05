@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SVG Attribute Control</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index - punkPOTUS</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div id="networkStatus"></div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">punkPOTUS</a></li>
+                <li><a href="/mint/">Mint</a></li>
+                <li><a href="/tokenomics/">Tokenomics</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/press/">Press</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+<head>
+  <title>Generatoe</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
+      font-family: 'Arial', sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       background-color: #f0f0f0;
-    }
-    .container {
-      display: flex;
-      gap: 40px;
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .svg-container {
       width: 500px;
@@ -104,7 +113,6 @@
   </style>
 </head>
 <body>
-<div class="container">
   <div class="svg-container">
     <div id="svgName" style="margin-top: 10px; font-size: 16px;"></div>
     <svg id="PUNK POTUS" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
@@ -249,6 +257,7 @@
   </div>
 </div>
 
+
 <script>
   const hueSlider = document.getElementById('hueSlider');
   const toggles = document.querySelectorAll('.toggle');
@@ -331,17 +340,133 @@
     svgName.textContent = svgNameText;
   }
 
+  function getPoliticalJoke(probability) {
+    if (probability === 1/360) {
+      return "Your chances are as slim as a politician keeping all their campaign promises!";
+    } else if (probability === 1/360 * 1/28) {
+      return "You're about as likely to win as a third-party candidate in a two-party system.";
+    } else if (probability === 1/360 * 1/100) {
+      return "These odds are lower than Congress's approval rating!";
+    } else if (probability === 1/360 * 1/28 * 1/28) {
+      return "You have a better chance of finding bipartisan agreement on a controversial bill.";
+    } else if (probability === 1/360 * 1/28 * 1/100) {
+      return "Your odds are worse than a snowball's chance in a climate change debate.";
+    } else if (probability === 1/360 * 1/28 * 1/100) {
+      return "You're more likely to see a filibuster-free Senate session than hit this combo.";
+    } else if (probability === 1/360 * 1/28 * 1/28 * 1/100) {
+      return "Congratulations! You're as rare as a scandal-free election year.";
+    } else {
+      return "Your chances are as unpredictable as a politician's stance on a hot-button issue.";
+    }
+  }
+
+  function getPoliticalJoke(probability) {
+    const jokes = [
+      "Your chances are as slim as a politician keeping all their campaign promises!",
+      "You're about as likely to win as a third-party candidate in a two-party system.",
+      "These odds are lower than Congress's approval rating!",
+      "You have a better chance of finding bipartisan agreement on a controversial bill.",
+      "Your odds are worse than a snowball's chance in a climate change debate.",
+      "You're more likely to see a filibuster-free Senate session than hit this combo.",
+      "Congratulations! You're as rare as a scandal-free election year.",
+      "Your chances are as unpredictable as a politician's stance on a hot-button issue.",
+      "You're more likely to see a budget surplus than this combination.",
+      "These odds are slimmer than the margin in a Florida recount!",
+      "You have a better shot at understanding the tax code than hitting this combo.",
+      "Your probability is lower than voter turnout in a mid-term election.",
+      "You're more likely to see a politician admit they were wrong than get this result.",
+      "These odds are longer than a State of the Union address.",
+      "You have a better chance of finding a non-partisan news source.",
+      "Your odds are worse than getting a straight answer at a press conference.",
+      "This combo is rarer than a politician without a Twitter account.",
+      "You're more likely to see world peace than this probability.",
+      "Your chances are slimmer than the fine print in a healthcare bill.",
+      "You have better odds of finding a unicorn in the Capitol building.",
+      "This probability is lower than the chances of a quiet day in Washington.",
+      "You're more likely to see pigs fly through the Senate chamber.",
+      "Your odds are worse than finding a needle in a bureaucratic haystack.",
+      "This combo is as rare as a unanimous Supreme Court decision.",
+      "You have a better chance of understanding parliamentary procedure.",
+      "Your probability is lower than the chances of a brief political speech.",
+      "You're more likely to see a balanced budget than hit this combination.",
+      "These odds are slimmer than the chances of a drama-free election.",
+      "You have better odds of naming all 27 amendments from memory.",
+      "This combo is rarer than a politician turning down a photo op.",
+      "Your chances are lower than finding common ground in a partisan debate.",
+      "You're more likely to see a pay cut for Congress than this result.",
+      "This probability is rarer than a straightforward bill title.",
+      "Your odds are worse than predicting the outcome of a political scandal.",
+      "You have a better chance of simplifying the tax code than hitting this.",
+      "This combo is as unlikely as a paperwork-free government process.",
+      "Your probability is lower than the chances of a leak-proof administration.",
+      "You're more likely to see a politician refuse a campaign donation.",
+      "These odds are slimmer than the margin between political ideologies.",
+      "You have better chances of finding the end of a filibuster.",
+      "This combo is rarer than a clear stance on a complex issue.",
+      "Your odds are worse than getting everyone to agree on healthcare reform.",
+      "You're more likely to see a one-page bill pass through Congress.",
+      "This probability is lower than the chances of a gaffe-free campaign.",
+      "Your chances are slimmer than finding a typo-free government website.",
+      "You have better odds of witnessing a productive town hall meeting.",
+      "This combo is as rare as a politician admitting they haven't read the bill.",
+      "Your probability is lower than the chances of a zero-dollar campaign.",
+      "You're more likely to see instant universal consensus than this result."
+    ];
+
+    // Use the probability to select a joke, ensuring consistent selection for each probability
+    const index = Math.floor(probability * jokes.length * 1000000) % jokes.length;
+    return jokes[index];
+  }
+
+  function getPoliticalJoke(probability) {
+    const jokes = [
+      // ... (jokes array remains the same)
+    ];
+
+    // Use a consistent method for both jokes and statements
+    const index = Math.floor(probability * jokes.length);
+    return jokes[index % jokes.length];
+  }
+
+  function getProbabilityStatement(probability) {
+    const statements = [
+      // ... (statements array remains the same)
+    ];
+
+    const index = Math.floor(probability * statements.length);
+    return statements[index % statements.length];
+  }
+
+  function getPoliticalJoke(probability) {
+    if (probability === 1/360) {
+      return "These odds are longer than a State of the Union address.";
+    } else if (probability === 1/360 * 1/28) {
+      return "You're about as likely to win as a third-party candidate in a two-party system.";
+    } else if (probability === 1/360 * 1/100) {
+      return "These odds are lower than Congress's approval rating!";
+    } else if (probability === 1/360 * 1/28 * 1/28) {
+      return "You have a better chance of finding bipartisan agreement on a controversial bill.";
+    } else if (probability === 1/360 * 1/28 * 1/100) {
+      return "Your odds are worse than a snowball's chance in a climate change debate.";
+    } else if (probability === 1/360 * 1/28 * 1/100) {
+      return "This combo is as rare as a unanimous Supreme Court decision.";
+    } else if (probability === 1/360 * 1/28 * 1/28 * 1/100) {
+      return "This combo is rarer than a politician without a Twitter account.";
+    } else {
+      return "Your chances are as unpredictable as a politician's stance on a hot-button issue.";
+    }
+  }
+
   function calculateProbability() {
     const hueValue = hueSlider.value;
     const hueProbability = 1 / 360;
-
     let glassesProbability = 1;
     let shirtProbability = 1;
     let laserProbability = 1;
 
     toggles.forEach(toggle => {
+      const classToToggle = toggle.dataset.class;
       if (toggle.checked) {
-        const classToToggle = toggle.dataset.class;
         if (classToToggle.startsWith('g')) {
           glassesProbability = 1 / 28;
         } else if (classToToggle.startsWith('s')) {
@@ -353,15 +478,17 @@
     });
 
     const totalProbability = hueProbability * glassesProbability * shirtProbability * laserProbability;
-    const percentageProbability = (totalProbability * 100).toFixed(10);
+    const percentageProbability = (totalProbability * 100).toFixed(6);
+    const politicalJoke = getPoliticalJoke(totalProbability);
 
-    messageDiv.textContent = `The probability of hitting this combination is ${percentageProbability}%.`;
+    messageDiv.textContent = `The probability of hitting this combination is ${percentageProbability}%`;
+    messageDiv.textContent += `\n${politicalJoke}`;
   }
 
-  function updateMessage() {
+          function updateMessage() {
     const saturation = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sat').trim());
     if (saturation === 0) {
-      messageDiv.textContent = "All tokens will look like this before the delayed reveal.";
+      messageDiv.textContent = "All tokens look like this before the delayed reveal.";
     } else {
       calculateProbability();
     }
@@ -462,9 +589,17 @@
   document.documentElement.style.setProperty('--hue', '0');
   document.documentElement.style.setProperty('--sat', '0%');
   hueInfo.textContent = `Red 0`;
-  svgName.textContent = "Default Unrevealed Image";
+  svgName.textContent = "punkPOTUS NFT Simulator";
   updateMessage();
 </script>
 </body>
+</body>
 </html>
 
+    </div>
+
+    <footer>
+        <p>&copy; 2024 punkPOTUS. All rights reserved.</p>
+    </footer>
+</body>
+</html>
