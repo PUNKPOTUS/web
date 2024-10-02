@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generatoe</title>
+  <title>Farcaster Frame</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -14,16 +14,19 @@
     .svg-container {
       width: 500px;
       text-align: center;
+      margin: 0 auto;
     }
     .controls {
       width: 300px;
+      margin: 20px auto;
     }
     .control-group {
       margin-bottom: 20px;
     }
     h1 {
       color: #333;
-      margin-top: 0;
+      margin-top: 20px;
+      text-align: center;
     }
     label {
       display: block;
@@ -36,23 +39,28 @@
     input[type="checkbox"] {
       margin-right: 5px;
     }
-    :root { --hue: 0; --sat: 100%; --lightness: 55%;}
+    :root { 
+      --hue: 0; 
+      --sat: 100%; 
+      --lightness: 55%;
+    }
 
-            .i{opacity:0}
-            .t5{opacity:.5}
+    .i{opacity:0}
+    .t5{opacity:.5}
 
-            .pr{fill:hsl(var(--hue),var(--sat), var(--lightness))}
-            .sc{fill:hsl(calc(var(--hue) + 120),var(--sat), var(--lightness))}
-            .tr{fill:hsl(calc(var(--hue) + 240),var(--sat), var(--lightness))}
-            .wh{fill:#fff}.au{fill:hsl(51,var(--sat), var(--lightness))}
-            .suit{fill:hsl(calc(var(--hue) + 120),calc(var(--sat)*.25), var(--lightness))}
-            .vest{fill:hsl(calc(var(--hue) + 180),calc(var(--sat)*.5), var(--lightness))}
-
-            .lip {fill: hsl(calc(var(--hue) + 120), calc(var(--sat) * .5), calc(var(--lightness) * .8));}
-            .skin {fill: hsl(var(--hue), calc(var(--sat) * .5), calc(var(--lightness) * 1.5));}
-            .sha {fill: hsl(calc(var(--hue) + 180), var(--sat), calc(var(--lightness) * .5));}
-            .fb {fill: hsl(216, var(--sat), calc(var(--lightness) * .8));}
-            .fw {fill: hsl(39, var(--sat), calc(var(--lightness) * 1.68));}var(--sat), 84%); }
+    .pr{fill:hsl(var(--hue),var(--sat), var(--lightness))}
+    .sc{fill:hsl(calc(var(--hue) + 120),var(--sat), var(--lightness))}
+    .tr{fill:hsl(calc(var(--hue) + 240),var(--sat), var(--lightness))}
+    .wh{fill:#fff}
+    .au{fill:hsl(51,var(--sat), var(--lightness))}
+    .suit{fill:hsl(calc(var(--hue) + 120),calc(var(--sat)*.25), var(--lightness))}
+    .vest{fill:hsl(calc(var(--hue) + 180),calc(var(--sat)*.5), var(--lightness))}
+    .lip {fill: hsl(calc(var(--hue) + 120), calc(var(--sat) * .5), calc(var(--lightness) * .8));}
+    .skin {fill: hsl(var(--hue), calc(var(--sat) * .5), calc(var(--lightness) * 1.5));}
+    .sha {fill: hsl(calc(var(--hue) + 180), var(--sat), calc(var(--lightness) * .5));}
+    .fb {fill: hsl(216, var(--sat), calc(var(--lightness) * .8));}
+    .fw {fill: hsl(39, var(--sat), calc(var(--lightness) * 1.68));}
+    
     .g0, .g1, .g2, .g3, .g4, .g5, .g6, .s0, .s1, .s2, .s3, .s4, .s5, .s6, .lr0 { opacity: 0; }
     .hue-info {
       display: flex;
@@ -94,8 +102,9 @@
 </head>
 <body>
   <div class="svg-container">
+    <h1>Farcaster Frame</h1>
     <div id="svgName" style="margin-top: 10px; font-size: 16px;"></div>
-    <svg id="PUNK POTUS" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+ <svg id="PUNK POTUS" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
       <defs>
         <pattern id="dot" patternUnits="userSpaceOnUse" width="3" height="3">
           <path class="sha" d="M0 0h4v4H0z" />
@@ -199,258 +208,36 @@
               d="M555 254c20-21 20-21-1-1-2-1-4-1-6 0-21-20-22-21-1 1-1 2-1 4 0 6-20 21-20 21 1 1 2 2 5 2 7 0 21 21 20 20 1-1 1-2 1-5-1-6zm-109 4c20-21 20-21-1-1-2-1-4-1-6 0-21-20-22-21-1 1-1 2-1 4 0 6-20 21-20 21 1 1 2 2 5 2 7 0 21 20 20 20 1-1 1-1 1-4-1-6z" />
       </g>
     </svg>
-    <button id="randomButton">Random</button>
-    <div id="message"></div>
   </div>
   <div class="controls">
-    <div class="control-group">
-      <div class="hue-info">
-        <label for="hueSlider">Hue:</label>
-        <div id="hueInfo"></div>
-      </div>
-      <input type="range" id="hueSlider" min="0" max="360" value="0">
+    <div class="control-group hue-info">
+      <label for="hue">Hue:</label>
+      <input type="range" id="hue" name="hue" min="0" max="360" value="0">
+      <span id="hueInfo">0</span>
     </div>
     <div class="control-group">
-      <h4>Eyewear (1/56 chance)</h4>
-      <label><input type="checkbox" id="toggleGlasses0" class="toggle" data-class="g0"> Aviator Joe</label>
-      <label><input type="checkbox" id="toggleGlasses1" class="toggle" data-class="g1"> Pixel</label>
-      <label><input type="checkbox" id="toggleGlasses2" class="toggle" data-class="g2"> Anaglyph 3D</label>
-      <label><input type="checkbox" id="toggleGlasses3" class="toggle" data-class="g3"> Visor</label>
-      <label><input type="checkbox" id="toggleGlasses4" class="toggle" data-class="g4"> Iconic Rectangular</label>
-      <label><input type="checkbox" id="toggleGlasses5" class="toggle" data-class="g5"> Retro Round</label>
-      <label><input type="checkbox" id="toggleGlasses6" class="toggle" data-class="g6"> Blindfold</label>
+      <button id="randomButton">Randomize Colors</button>
     </div>
-    <div class="control-group">
-      <h4>Shirts (1/28 chance)</h4>
-      <label><input type="checkbox" id="toggleShirt0" class="toggle" data-class="s0"> Coconut Tree</label>
-      <label><input type="checkbox" id="toggleShirt1" class="toggle" data-class="s1"> Bitcoin</label>
-      <label><input type="checkbox" id="toggleShirt2" class="toggle" data-class="s2"> Dollar</label>
-      <label><input type="checkbox" id="toggleShirt3" class="toggle" data-class="s3"> Ethereum</label>
-      <label><input type="checkbox" id="toggleShirt4" class="toggle" data-class="s4"> Lightning</label>
-      <label><input type="checkbox" id="toggleShirt5" class="toggle" data-class="s5"> Lady Liberty</label>
-      <label><input type="checkbox" id="toggleShirt6" class="toggle" data-class="s6"> Flying Dove</label>
-    </div>
-    <div class="control-group">
-      <h4>Maxi (1/100 chance)</h4>
-      <label><input type="checkbox" id="toggleLaser0" class="toggle" data-class="lr0"> Laser-Eyed</label>
-    </div>
+    <div id="message"></div>
   </div>
-</div>
+  <script>
+    const svgElement = document.getElementById('PUNK_POTUS');
+    const hueInput = document.getElementById('hue');
+    const hueInfo = document.getElementById('hueInfo');
+    const randomButton = document.getElementById('randomButton');
 
-<script>
-  const hueSlider = document.getElementById('hueSlider');
-  const toggles = document.querySelectorAll('.toggle');
-  const svg = document.getElementById('PUNK POTUS');
-  const hueInfo = document.getElementById('hueInfo');
-  const svgName = document.getElementById('svgName');
-  const randomButton = document.getElementById('randomButton');
-  const messageDiv = document.getElementById('message');
-
-  function getHueName(hueValue) {
-    if (hueValue < 15) return "Red";
-    else if (hueValue < 30) return "Red-Orange";
-    else if (hueValue < 45) return "Orange";
-    else if (hueValue < 60) return "Yellow-Orange";
-    else if (hueValue < 75) return "Yellow";
-    else if (hueValue < 90) return "Yellow-Green";
-    else if (hueValue < 105) return "Green";
-    else if (hueValue < 120) return "Green-Cyan";
-    else if (hueValue < 135) return "Cyan";
-    else if (hueValue < 150) return "Cyan-Blue";
-    else if (hueValue < 165) return "Blue";
-    else if (hueValue < 180) return "Blue-Indigo";
-    else if (hueValue < 195) return "Indigo";
-    else if (hueValue < 210) return "Indigo-Violet";
-    else if (hueValue < 225) return "Violet";
-    else if (hueValue < 240) return "Violet-Purple";
-    else if (hueValue < 255) return "Purple";
-    else if (hueValue < 270) return "Purple-Magenta";
-    else if (hueValue < 285) return "Magenta";
-    else if (hueValue < 300) return "Magenta-Pink";
-    else if (hueValue < 315) return "Pink";
-    else if (hueValue < 330) return "Pink-Red";
-    else return "Red";
-  }
-
-  function getShirtName(value) {
-    if (value == 0) return "Coconut Tree";
-    else if (value == 1) return "Bitcoin";
-    else if (value == 2) return "Dollar";
-    else if (value == 3) return "Ethereum";
-    else if (value == 4) return "Lightning";
-    else if (value == 5) return "Lady Liberty";
-    else if (value == 6) return "Flying Dove";
-    else return "";
-  }
-
-  function getGlassesName(value) {
-    if (value == 0) return "Aviator Joe";
-    else if (value == 1) return "Pixel";
-    else if (value == 2) return "Anaglyph 3D";
-    else if (value == 3) return "Visor";
-    else if (value == 4) return "Iconic Rectangular";
-    else if (value == 5) return "Retro Round";
-    else if (value == 6) return "Blindfold";
-    else return "";
-  }
-
-  function updateSvgName() {
-    const hueValue = hueSlider.value;
-    const hueName = getHueName(hueValue);
-
-    let glassesName = "";
-    let shirtName = "";
-    let laserName = "";
-
-    toggles.forEach(toggle => {
-      if (toggle.checked) {
-        const classToToggle = toggle.dataset.class;
-        if (classToToggle.startsWith('g')) {
-          glassesName = getGlassesName(parseInt(classToToggle.slice(1)));
-        } else if (classToToggle.startsWith('s')) {
-          shirtName = getShirtName(parseInt(classToToggle.slice(1)));
-        } else if (classToToggle === 'lr0') {
-          laserName = "Laser-Eyed";
-        }
-      }
+    hueInput.addEventListener('input', (event) => {
+      const hue = event.target.value;
+      svgElement.style.setProperty('--hue', hue);
+      hueInfo.textContent = hue;
     });
 
-    const svgNameText = `${laserName ? laserName + ' ' : ''}${hueName} ${glassesName} ${shirtName} PUNK POTUS`;
-    svgName.textContent = svgNameText;
-  }
-
-  function calculateProbability() {
-    const hueValue = hueSlider.value;
-    const hueProbability = 1 / 360;
-    let glassesProbability = 1;
-    let shirtProbability = 1;
-    let laserProbability = 1;
-
-    toggles.forEach(toggle => {
-      const classToToggle = toggle.dataset.class;
-      if (toggle.checked) {
-        if (classToToggle.startsWith('g')) {
-          glassesProbability = 1 / 56;
-        } else if (classToToggle.startsWith('s')) {
-          shirtProbability = 1 / 28;
-        } else if (classToToggle === 'lr0') {
-          laserProbability = 1 / 100;
-        }
-      }
+    randomButton.addEventListener('click', () => {
+      const randomHue = Math.floor(Math.random() * 361);
+      hueInput.value = randomHue;
+      svgElement.style.setProperty('--hue', randomHue);
+      hueInfo.textContent = randomHue;
     });
-
-    const totalProbability = hueProbability * glassesProbability * shirtProbability * laserProbability;
-    const percentageProbability = (totalProbability * 100).toFixed(6);
-
-    messageDiv.textContent = `The probability of getting this PunkPOTUS is ${percentageProbability}%`;
-  }
-
-    function updateMessage() {
-    const saturation = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sat').trim());
-    if (saturation === 0) {
-      messageDiv.textContent = "Brat Candidate Kamala Harris.";
-    } else {
-      calculateProbability();
-    }
-  }
-
-  hueSlider.addEventListener('input', (event) => {
-    const hueValue = event.target.value;
-    document.documentElement.style.setProperty('--hue', hueValue);
-    const hueName = getHueName(hueValue);
-    hueInfo.textContent = `${hueName} ${hueValue}`;
-    updateSvgName();
-    document.documentElement.style.setProperty('--sat', '100%');
-    updateMessage();
-  });
-
-  toggles.forEach(toggle => {
-    toggle.addEventListener('change', (event) => {
-      const classToToggle = event.target.dataset.class;
-      const elements = svg.querySelectorAll(`.${classToToggle}`);
-      elements.forEach(element => {
-        element.style.opacity = event.target.checked ? '1' : '0';
-      });
-
-      // Ensure only one checkbox is checked at a time within the Eyewear and Shirts groups
-      if (classToToggle.startsWith('g') || classToToggle.startsWith('s')) {
-        const group = classToToggle.startsWith('g') ? 'g' : 's';
-        const groupToggles = document.querySelectorAll(`.toggle[data-class^="${group}"]`);
-        groupToggles.forEach(gToggle => {
-          if (gToggle !== event.target) {
-            gToggle.checked = false;
-            const otherClassToToggle = gToggle.dataset.class;
-            const otherElements = svg.querySelectorAll(`.${otherClassToToggle}`);
-            otherElements.forEach(otherElement => {
-              otherElement.style.opacity = '0';
-            });
-          }
-        });
-      }
-
-      updateSvgName();
-      document.documentElement.style.setProperty('--sat', '100%');
-      updateMessage();
-    });
-  });
-
-  randomButton.addEventListener('click', () => {
-    // Deselect all checkboxes
-    toggles.forEach(toggle => {
-      toggle.checked = false;
-      const classToToggle = toggle.dataset.class;
-      const elements = svg.querySelectorAll(`.${classToToggle}`);
-      elements.forEach(element => {
-        element.style.opacity = '0';
-      });
-    });
-
-    // Generate random values
-    const randomHue = Math.floor(Math.random() * 360);
-    hueSlider.value = randomHue;
-    document.documentElement.style.setProperty('--hue', randomHue);
-    const hueName = getHueName(randomHue);
-    hueInfo.textContent = `${hueName} ${randomHue}`;
-
-    const randomGlasses = Math.floor(Math.random() * 56);
-    if (randomGlasses < 7) {
-      document.getElementById(`toggleGlasses${randomGlasses}`).checked = true;
-    }
-
-    const randomShirt = Math.floor(Math.random() * 28);
-    if (randomShirt < 7) {
-      document.getElementById(`toggleShirt${randomShirt}`).checked = true;
-    }
-
-    const randomMaxi = Math.floor(Math.random() * 100);
-    if (randomMaxi === 0) {
-      document.getElementById(`toggleLaser0`).checked = true;
-    }
-
-    // Update SVG based on new random values
-    toggles.forEach(toggle => {
-      if (toggle.checked) {
-        const classToToggle = toggle.dataset.class;
-        const elements = svg.querySelectorAll(`.${classToToggle}`);
-        elements.forEach(element => {
-          element.style.opacity = '1';
-        });
-      }
-    });
-
-    // Set saturation to 100%
-    document.documentElement.style.setProperty('--sat', '100%');
-
-    updateSvgName();
-    updateMessage();
-  });
-
-  // Initial setup
-  document.documentElement.style.setProperty('--hue', '0');
-  document.documentElement.style.setProperty('--sat', '0%');
-  hueInfo.textContent = `Red 0`;
-  svgName.textContent = "PunkPOTUS NFT Simulator";
-  updateMessage();
-</script>
+  </script>
 </body>
 </html>
