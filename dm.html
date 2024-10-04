@@ -2,8 +2,10 @@
 <html>
 <head>
     <meta property="fc:frame" content="vNext" />
-    <meta property="fc:frame:image" content="https://punkpotus.one/cat.png" />
-    <meta property="fc:frame:button:1" content="😺 Play/Pause" />
+    <meta property="fc:frame:image" content="/api/placeholder/600/400" />
+    <meta property="fc:frame:button:1" content="😺 Meow!" />
+    <meta property="fc:frame:button:2" content="🐟 Tip Kitty" />
+    <meta property="fc:frame:post_url" content="https://punkpotus.one/degem-meow-meow3.mp3" />
     <title>Degen Meow Meow</title>
     <style>
         body {
@@ -28,7 +30,6 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            border-radius: 20px;
         }
         .track-info {
             font-size: 24px;
@@ -67,31 +68,6 @@
             <p>Anthem</p>
         </div>
         <div class="visualizer"></div>
-        <audio id="audio-player" crossorigin="anonymous">
-            <source src="https://punkpotus.one/degen-meow-meow3.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
     </div>
-    <script>
-        const audio = document.getElementById('audio-player');
-        let isPlaying = false;
-
-        window.addEventListener('message', (event) => {
-            if (event.data.button === 1) {
-                if (isPlaying) {
-                    audio.pause();
-                } else {
-                    audio.play();
-                }
-                isPlaying = !isPlaying;
-            } else if (event.data.button === 2) {
-                alert("🐟 Kitty says thank you for the tip! Meow! 🐾");
-            }
-        });
-
-        audio.addEventListener('ended', () => {
-            isPlaying = false;
-        });
-    </script>
 </body>
 </html>
