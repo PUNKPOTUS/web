@@ -1,26 +1,36 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>Degen Meow Meow Anthem</title>
   <meta property="fc:frame" content="vNext" />
-  <meta property="fc:frame:video"
-    content="https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8" />
+  <meta property="fc:frame:image" content="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs" />
+  <meta property="fc:frame:video" content="https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u8" />
   <meta property="fc:frame:video:type" content="application/x-mpegURL" />
-  <meta property="fc:frame:image" content="https://www.w3schools.com/w3images/mountains.jpg" />
-  <meta property="og:image" content="https://www.w3schools.com/w3images/mountains.jpg" />
+  <meta property="og:image" content="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs" />
+  <meta property="fc:frame:button:1" content="Play Video" />
+  <meta property="fc:frame:button:1:action" content="post" />
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
 </head>
-
 <body>
-  <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" poster="MY_VIDEO_POSTER.jpg"
-    data-setup="{}">
-    <source src="https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u88" type="application/x-mpegURL" />
+<div id="videoContainer">
+  <video
+          id="my-video"
+          class="video-js"
+          controls
+          preload="auto"
+          width="500"
+          height="500"
+          poster="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs"
+          data-setup="{}"
+  >
+    <source src="https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u8" type="application/x-mpegURL" />
     <p class="vjs-no-js">
       To view this video please enable JavaScript, and consider upgrading to a
-      web browser that
-      <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+      web browser that supports HTML5 video
     </p>
   </video>
-
-  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+</div>
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 </body>
 </html>
