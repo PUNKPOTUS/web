@@ -6,49 +6,10 @@
     <meta property="fc:frame:image" content="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs" />
     <meta property="fc:frame:video" content="https://arweave.net/mfeR9h8rF79yCVfX5fCaF4WOaFYZRgRMncg95s5JFLQ" />
     <meta property="fc:frame:video:type" content="application/x-mpegURL" />
-    <meta property="og:image" content="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs" />
-    <meta property="fc:frame:button:1" content="Play Video" />
-    <meta property="fc:frame:button:1:action" content="post_redirect" />
-    <meta property="fc:frame:post_url" content="https://punkpotus.one/frames/pp.html" />
-    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <meta property="fc:frame:button:1" content="▶️ Play" />
+    <meta property="fc:frame:button:1:action" content="video" />
 </head>
 <body>
-    <div id="videoFrameContainer"></div>
-    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-    <script>
-        const metadata = {
-            videoUrl: "https://arweave.net/mfeR9h8rF79yCVfX5fCaF4WOaFYZRgRMncg95s5JFLQ",
-            videoType: "application/x-mpegURL",
-            imageUrl: "https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs"
-        };
-
-        function createMediaElement(metadata) {
-            const container = document.getElementById('videoFrameContainer');
-            container.innerHTML = '';
-            
-            if (metadata.videoUrl && metadata.videoType) {
-                const videoElement = document.createElement('video');
-                videoElement.classList.add('video-js');
-                videoElement.controls = true;
-                videoElement.preload = 'auto';
-                videoElement.style.width = '640px';
-                videoElement.style.height = '640px';
-                videoElement.poster = metadata.imageUrl;
-                videoElement.setAttribute('data-setup', '{}');
-
-                const sourceElement = document.createElement('source');
-                sourceElement.src = metadata.videoUrl;
-                sourceElement.type = metadata.videoType;
-                videoElement.appendChild(sourceElement);
-                container.appendChild(videoElement);
-
-                videojs(videoElement);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            createMediaElement(metadata);
-        });
-    </script>
+    <h1>Video Frame</h1>
 </body>
 </html>
