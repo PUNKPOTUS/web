@@ -1,73 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <!-- Farcaster Frame Required Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="fc:frame" content="vNext" />
-    <meta property="fc:frame:image" content="/api/placeholder/600/400" />
-    <meta property="fc:frame:button:1" content="😺 Meow!" />
-    <meta property="fc:frame:button:2" content="🐟 Tip Kitty" />
-    <meta property="fc:frame:post_url" content="https://punkpotus.one/degem-meow-meow3.mp3" />
-    <title>Degen Meow Meow</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #2a0e42;
-            color: white;
-            font-family: system-ui, sans-serif;
-        }
-        .player {
-            width: 100%;
-            max-width: 600px;
-            aspect-ratio: 1.91/1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, #4c1d95, #7e22ce);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .track-info {
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        .visualizer {
-            width: 200px;
-            height: 60px;
-            margin: 20px 0;
-            background: linear-gradient(90deg, #f0abfc, #e879f9, #d946ef);
-            border-radius: 30px;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.6; }
-        }
-        .cat-emoji {
-            font-size: 40px;
-            margin: 10px;
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-    </style>
-</head>
+    <meta property="fc:frame:image" content="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs" />
+    <meta property="fc:frame:video" content="https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u8" />
+    <meta property="fc:frame:video:type" content="application/x-mpegURL" />
+    <!-- OpenGraph Meta Tags (Required for Farcaster) -->
+    <meta property="og:title" content="Video Frame" />
+    <meta property="og:image" content="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs" />
+    <meta property="og:description" content="Video content" />
+  </head>
 <body>
-    <div class="player">
-        <div class="track-info">
-            <span class="cat-emoji">😺</span>
-            <h1>Degen Meow Meow</h1>
-            <p>Anthem</p>
-        </div>
-        <div class="visualizer"></div>
-    </div>
+  <video 
+    id="my-video" 
+    class="video-js" 
+    controls 
+    preload="auto" 
+    width="500" 
+    height="500" 
+    poster="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs"
+    data-setup="{}">
+    <source src="https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u8" type="application/x-mpegURL" />
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a
+      web browser that
+      <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+  </video>
+  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 </body>
 </html>
