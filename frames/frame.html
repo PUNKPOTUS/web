@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Video Frame Builder</title>
   <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <!-- Farcaster Frame Required Meta Tags -->
+  <meta property="fc:frame" content="vNext" />
+  <meta property="fc:frame:image" content="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs" />
+  <meta property="fc:frame:video" content="https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u8" />
+  <meta property="fc:frame:video:type" content="application/x-mpegURL" />
+  <!-- OpenGraph Meta Tags (Required for Farcaster) -->
+  <meta property="og:title" content="Video Frame" />
+  <meta property="og:image" content="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs" />
+  <meta property="og:description" content="Video content" />
 </head>
-
 <body>
   <div id="videoFrameContainer"></div>
 
@@ -73,7 +80,6 @@
       .then(dom => extractMetadata(dom))
       .then(metadata => createMediaElement(metadata))
       .catch(error => console.error('Failed to fetch or parse HTML:', error));
-
   </script>
 </body>
 </html>
