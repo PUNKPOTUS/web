@@ -68,7 +68,7 @@
       }
     }
 
-    const url = 'https://punkpotus.one/frames';
+    const url = 'https://punkpotus.one/frames/index.html';
     fetchHTML(url)
       .then(dom => extractMetadata(dom))
       .then(metadata => createMediaElement(metadata))
