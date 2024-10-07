@@ -2,13 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Video Frame Builder</title>
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <meta property="fc:frame" content="vNext" />
     <meta property="fc:frame:image" content="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs" />
     <meta property="fc:frame:video" content="https://arweave.net/mfeR9h8rF79yCVfX5fCaF4WOaFYZRgRMncg95s5JFLQ" />
+    <meta property="fc:frame:video:type" content="video/mp4" />
     <meta property="fc:frame:button:1" content="▶⏸" />
     <meta property="fc:frame:button:1:action" content="video" />
+    <style>
+        #videoFrameContainer {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .video-js {
+            aspect-ratio: 1/1;
+            width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Video Frame</h1>
+    <div id="videoFrameContainer"></div>
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+    <script>
+        function createMediaElement(metadata) {
+            const container = document.getElementById('videoFrameContainer');
+            container.innerHTML = '';
+            
+            if (metadata.videoUrl && metadata.videoType) {
+                const videoElement = document.createElement('video');
+                videoElement.classList.add('video-js');
+                videoElement.controls = true;
+                videoElement.preload = 'auto';
+                videoElement.poster = metadata.imageUrl;
+                videoElement.setAttribute('data-setup', '{}');
+
+                const sourceElement = document.createElement('source');
+                sourceElement.src = metadata.videoUrl;
+                sourceElement.type = metadata.videoType;
+                videoElement.appendChild(sourceElement);
+                container.appendChild(videoElement);
+
+                videojs(videoElement);
+            } else if (metadata.imageUrl) {
+                const imageElement = document.createElement('img');
+                imageElement.src = metadata.imageUrl;
+                imageElement.style.aspectRatio = '1/1';
+                imageElement.style.width = '100%';
+                imageElement.alt = 'Fallback Image';
+                container.appendChild(imageElement);
+            } else {
+                container.innerText = 'Media content is not available.';
+            }
+        }
+
+        const metadata = {
+            videoUrl: "https://arweave.net/mfeR9h8rF79yCVfX5fCaF4WOaFYZRgRMncg95s5JFLQ",
+            videoType: "video/webm",
+            imageUrl: "https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs"
+        };
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            createMediaElement(metadata);
+        });
+    </script>
 </body>
 </html>
