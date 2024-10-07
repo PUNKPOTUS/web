@@ -59,6 +59,11 @@
                 responsive: true,
                 fluid: true
             });
+
+            // Handle button click event
+            document.querySelector('[property="fc:frame:button:1"]').addEventListener('click', function() {
+                player.play();
+            });
         });
     </script>
 </body>
