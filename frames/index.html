@@ -75,6 +75,7 @@
       }
     }
 
+    // Fetch the HTML content from the specified URL and extract metadata
     const url = 'https://punkpotus.one/frames';
     fetchHTML(url)
       .then(dom => extractMetadata(dom))
