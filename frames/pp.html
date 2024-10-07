@@ -2,79 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Degen Meow Meow</title>
-    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <meta property="fc:frame" content="vNext" />
     <meta property="fc:frame:image" content="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs" />
     <meta property="fc:frame:video" content="https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u8" />
     <meta property="fc:frame:video:type" content="video/mp4" />
     <meta property="fc:frame:button:1" content="▶⏸" />
-    <meta property="fc:frame:button:1:action" content="video" />
+    <meta property="fc:frame:button:1:action" content="post_redirect" />
 </head>
 <body>
-    <div id="videoFrameContainer"></div>
-    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-    <script>
-        function fetchHTML(url) {
-            return fetch(url)
-                .then(response => response.text())
-                .then(html => new DOMParser().parseFromString(html, "text/html"));
-        }
-
-        function extractMetadata(dom) {
-            return {
-                videoUrl: dom.querySelector('meta[property="fc:frame:video"]').getAttribute('content'),
-                videoType: dom.querySelector('meta[property="fc:frame:video:type"]').getAttribute('content'),
-                imageUrl: dom.querySelector('meta[property="fc:frame:image"]').getAttribute('content'),
-            };
-        }
-
-        function createMediaElement(metadata) {
-            const container = document.getElementById('videoFrameContainer');
-            container.innerHTML = '';
-            
-            const width = 500;
-            const height = 500;
-
-            if (metadata.videoUrl && metadata.videoType) {
-                const videoElement = document.createElement('video');
-                videoElement.classList.add('video-js');
-                videoElement.controls = true;
-                videoElement.preload = 'auto';
-                videoElement.style.width = `${width}px`;
-                videoElement.style.height = `${height}px`;
-                videoElement.poster = metadata.imageUrl;
-                videoElement.setAttribute('data-setup', '{}');
-
-                const sourceElement = document.createElement('source');
-                sourceElement.src = metadata.videoUrl;
-                sourceElement.type = metadata.videoType;
-                videoElement.appendChild(sourceElement);
-                container.appendChild(videoElement);
-
-                videojs(videoElement);
-            } else if (metadata.imageUrl) {
-                const imageElement = document.createElement('img');
-                imageElement.src = metadata.imageUrl;
-                imageElement.style.width = `${width}px`;
-                imageElement.style.height = `${height}px`;
-                imageElement.alt = 'Fallback Image';
-                container.appendChild(imageElement);
-            } else {
-                container.innerText = 'Media content is not available.';
-            }
-        }
-
-        // Initialize with current page metadata
-        const metadata = {
-            videoUrl: "https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u8",
-            videoType: "video/mp4",
-            imageUrl: "https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs"
-        };
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            createMediaElement(metadata);
-        });
-    </script>
+    <h1>Video Frame</h1>
 </body>
 </html>
