@@ -4,74 +4,179 @@
   <meta charset="UTF-8">
   <title>Video Frame Renderer</title>
   <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <style>
+    .error-message {
+      color: red;
+      padding: 20px;
+      border: 1px solid red;
+      margin: 20px;
+    }
+    .debug-info {
+      background: #f5f5f5;
+      padding: 10px;
+      margin: 10px 0;
+      font-family: monospace;
+    }
+  </style>
 </head>
 <body>
+  <div id="debugInfo"></div>
   <div id="videoFrameContainer"></div>
   <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
   <script>
-    // Helper function to fetch and parse HTML
+    // Debug logging function
+    function logDebug(message, data = null) {
+      const debugDiv = document.getElementById('debugInfo');
+      const debugMessage = document.createElement('div');
+      debugMessage.className = 'debug-info';
+      debugMessage.innerHTML = `${message}${data ? ': ' + JSON.stringify(data) : ''}`;
+      debugDiv.appendChild(debugMessage);
+      console.log(message, data);
+    }
+
+    // Enhanced fetch with error handling
     function fetchHTML(url) {
-      return fetch(url)
-        .then(response => response.text())
-        .then(html => new DOMParser().parseFromString(html, "text/html"));
+      logDebug('Attempting to fetch from URL', url);
+      
+      return fetch(url, {
+        mode: 'cors',
+        headers: {
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+        }
+      })
+      .then(response => {
+        logDebug('Fetch response status', response.status);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        logDebug('Successfully fetched HTML content length', html.length);
+        return new DOMParser().parseFromString(html, "text/html");
+      })
+      .catch(error => {
+        logDebug('Fetch error occurred', error.message);
+        throw error;
+      });
     }
 
-    // Extract metadata from your frame
+    // Enhanced metadata extraction with error handling
     function extractMetadata(dom) {
-      return {
-        videoUrl: dom.querySelector('meta[property="fc:frame:video"]').getAttribute('content'),
-        videoType: dom.querySelector('meta[property="fc:frame:video:type"]').getAttribute('content'),
-        imageUrl: dom.querySelector('meta[property="fc:frame:image"]').getAttribute('content'),
-      };
-    }
+      logDebug('Attempting to extract metadata from DOM');
+      
+      try {
+        const videoMeta = dom.querySelector('meta[property="fc:frame:video"]');
+        const videoTypeMeta = dom.querySelector('meta[property="fc:frame:video:type"]');
+        const imageMeta = dom.querySelector('meta[property="fc:frame:image"]');
 
-    // Create the video player
-    function createMediaElement(metadata) {
-      const container = document.getElementById('videoFrameContainer');
-      container.innerHTML = ''; // Clear existing content
+        if (!videoMeta || !videoTypeMeta || !imageMeta) {
+          logDebug('Missing required meta tags', {
+            video: !!videoMeta,
+            videoType: !!videoTypeMeta,
+            image: !!imageMeta
+          });
+          throw new Error('Missing required meta tags');
+        }
 
-      // Use the same dimensions as your index.html
-      const width = 500;
-      const height = 500;
+        const metadata = {
+          videoUrl: videoMeta.getAttribute('content'),
+          videoType: videoTypeMeta.getAttribute('content'),
+          imageUrl: imageMeta.getAttribute('content')
+        };
 
-      if (metadata.videoUrl && metadata.videoType) {
-        const videoElement = document.createElement('video');
-        videoElement.classList.add('video-js');
-        videoElement.controls = true;
-        videoElement.preload = 'auto';
-        videoElement.style.width = `${width}px`;
-        videoElement.style.height = `${height}px`;
-        videoElement.poster = metadata.imageUrl;
-        videoElement.setAttribute('data-setup', '{}');
-
-        const sourceElement = document.createElement('source');
-        sourceElement.src = metadata.videoUrl;
-        sourceElement.type = metadata.videoType;
-        
-        videoElement.appendChild(sourceElement);
-        container.appendChild(videoElement);
-        
-        // Initialize video.js player
-        videojs(videoElement);
-      } else if (metadata.imageUrl) {
-        // Fallback to image if video isn't available
-        const imageElement = document.createElement('img');
-        imageElement.src = metadata.imageUrl;
-        imageElement.style.width = `${width}px`;
-        imageElement.style.height = `${height}px`;
-        imageElement.alt = 'Fallback Image';
-        container.appendChild(imageElement);
-      } else {
-        container.innerText = 'Media content is not available.';
+        logDebug('Successfully extracted metadata', metadata);
+        return metadata;
+      } catch (error) {
+        logDebug('Error extracting metadata', error.message);
+        throw error;
       }
     }
 
+    // Enhanced media element creation with error handling
+    function createMediaElement(metadata) {
+      logDebug('Creating media element with metadata', metadata);
+      
+      const container = document.getElementById('videoFrameContainer');
+      container.innerHTML = '';
+
+      const width = 500;
+      const height = 500;
+
+      try {
+        if (metadata.videoUrl && metadata.videoType) {
+          const videoElement = document.createElement('video');
+          videoElement.classList.add('video-js');
+          videoElement.controls = true;
+          videoElement.preload = 'auto';
+          videoElement.style.width = `${width}px`;
+          videoElement.style.height = `${height}px`;
+          videoElement.poster = metadata.imageUrl;
+          videoElement.setAttribute('data-setup', '{}');
+
+          const sourceElement = document.createElement('source');
+          sourceElement.src = metadata.videoUrl;
+          sourceElement.type = metadata.videoType;
+          
+          videoElement.appendChild(sourceElement);
+          container.appendChild(videoElement);
+          
+          const player = videojs(videoElement);
+          
+          // Add error handling for video.js
+          player.on('error', function() {
+            logDebug('Video.js error occurred', this.error());
+            createFallbackImage(metadata.imageUrl);
+          });
+
+          logDebug('Successfully created video element');
+        } else if (metadata.imageUrl) {
+          createFallbackImage(metadata.imageUrl);
+        } else {
+          throw new Error('No valid media content available');
+        }
+      } catch (error) {
+        logDebug('Error creating media element', error.message);
+        showError(error.message);
+      }
+    }
+
+    // Helper function for fallback image
+    function createFallbackImage(imageUrl) {
+      logDebug('Creating fallback image', imageUrl);
+      
+      const container = document.getElementById('videoFrameContainer');
+      const imageElement = document.createElement('img');
+      imageElement.src = imageUrl;
+      imageElement.style.width = '500px';
+      imageElement.style.height = '500px';
+      imageElement.alt = 'Fallback Image';
+      container.innerHTML = '';
+      container.appendChild(imageElement);
+    }
+
+    // Helper function to show errors
+    function showError(message) {
+      const container = document.getElementById('videoFrameContainer');
+      container.innerHTML = `
+        <div class="error-message">
+          <h3>Error</h3>
+          <p>${message}</p>
+        </div>
+      `;
+    }
+
     // Main execution
-    const frameUrl = 'https://punkpotus.one/frames'; // Replace with your index.html URL
+    const frameUrl = 'https://punkpotus.one/frames';
+    logDebug('Starting frame renderer with URL', frameUrl);
+
     fetchHTML(frameUrl)
       .then(dom => extractMetadata(dom))
       .then(metadata => createMediaElement(metadata))
-      .catch(error => console.error('Failed to fetch or parse HTML:', error));
+      .catch(error => {
+        logDebug('Main execution error', error.message);
+        showError(`Failed to load frame content: ${error.message}`);
+      });
   </script>
 </body>
 </html>
