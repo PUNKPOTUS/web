@@ -7,8 +7,31 @@
     <meta property="fc:frame:image" content="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs" />
     <meta property="fc:frame:video" content="https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u8" />
     <meta property="fc:frame:video:type" content="application/x-mpegURL" />
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@^1.5.0/dist/hls.min.js"></script>
 </head>
 <body>
-    <h1>Video Frame</h1>
+    <video id="video" controls style="max-width: 100%; height: auto;"></video>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('video');
+            const videoUrl = 'https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u8';
+            
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(videoUrl);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play();
+                });
+            }
+            // For browsers with native HLS support (Safari)
+            else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = videoUrl;
+                video.addEventListener('loadedmetadata', function() {
+                    video.play();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
