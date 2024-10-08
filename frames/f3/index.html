@@ -3,48 +3,52 @@
 <head>
     <meta charset="utf-8">
     <title>Video Frame</title>
-    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <meta property="fc:frame" content="vNext" />
     <meta property="fc:frame:video" content="https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u8" />
     <meta property="fc:frame:video:type" content="application/x-mpegURL" />
     <meta property="fc:frame:image" content="https://arweave.net/tcgPiqquobs5dHT5x8Szn3miDxbBVOTKkoMY7MwWGEs" />
     <meta property="fc:frame:button:1" content="Play Video" />
+    
     <style>
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden;
-        }
-        .video-container {
-            width: 100vw;
-            height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #000;
         }
-        .video-js {
+        video {
             width: 100%;
-            height: 100%;
+            max-width: 640px;
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <video-js id="my-video" class="video-js vjs-big-play-centered">
-            <source src="https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u8" type="application/x-mpegURL" />
-        </video-js>
-    </div>
-
-    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+    <video id="video" controls autoplay></video>
+    
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var player = videojs('my-video', {
-                controls: true,
-                autoplay: true,
-                fluid: true,
-                responsive: true,
-                playbackRates: [0.5, 1, 1.5, 2]
-            });
+            const video = document.getElementById('video');
+            const videoSrc = 'https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/70ed8k9v4txqzz9q/index.m3u8';
+            
+            if (Hls.isSupported()) {
+                const hls = new Hls({
+                    enableWorker: true,
+                    lowLatencyMode: true
+                });
+                hls.loadSource(videoSrc);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play();
+                });
+            }
+            else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = videoSrc;
+            }
         });
     </script>
 </body>
