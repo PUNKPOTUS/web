@@ -3,28 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
     <title>Blog - punkPOTUS</title>
     <link rel="stylesheet" href="/css/style.css">
+    <!-- Add favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
-<div id="networkStatus"></div>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">punkPOTUS</a></li>
-                <li><a href="/mint/">Mint</a></li>
-                <li><a href="/tokenomics/">Tokenomics</a></li>
-                <li><a href="/blog/">Blog</a></li>
-                <li><a href="/press/">Press</a></li>
-                <li><a href="/about/">About</a></li>
+    <div id="networkStatus" aria-live="polite"></div>
+
+    <header class="site-header">
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="/" class="nav-link">PunkPOTUS</a></li>
+                <li><a href="/mint/" class="nav-link">Mint</a></li>
+                <li><a href="/tokenomics/" class="nav-link">Tokenomics</a></li>
+                <li><a href="/blog/" class="nav-link">Blog</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="container">
-        
+    <main class="container">
+        <head>
+    <title>Tokenomics of punkPOTUS</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                padding: 0px;
+                background-color: #f0f0f0;
+            }
+            .container {
+                max-width: 800px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+</head>
 <body>
-
     <main>
         <article>
 
@@ -58,10 +82,32 @@
 </body>
 
 
-    </div>
+    </main>
 
-    <footer>
-        <p>&copy; 2024 punkPOTUS. All rights reserved.</p>
-    </footer>
+<footer class="site-footer">
+    <p>&copy; 2024 punkPOTUS. All rights reserved. |
+    <a href="https://x.com/dirtysalsa">Twitter</a> |
+    <a href="https://warpcast.com/digifilm.eth">Warpcast</a> |
+    <a href="https://discord.gg/bTAnHMsq4v">Discord</a></p>
+</footer>
+
+
+
+    <!-- Add basic script for network status -->
+    <script>
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+
+        function updateNetworkStatus() {
+            const statusDiv = document.getElementById('networkStatus');
+            if (navigator.onLine) {
+                statusDiv.textContent = '';
+                statusDiv.style.display = 'none';
+            } else {
+                statusDiv.textContent = 'You are currently offline';
+                statusDiv.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>

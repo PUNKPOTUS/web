@@ -3,123 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mint - punkPOTUS</title>
+    <meta name="description" content="">
+    <title>Mint punkPOTUS - punkPOTUS</title>
     <link rel="stylesheet" href="/css/style.css">
+    <!-- Add favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
-<div id="networkStatus"></div>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">punkPOTUS</a></li>
-                <li><a href="/mint/">Mint</a></li>
-                <li><a href="/tokenomics/">Tokenomics</a></li>
-                <li><a href="/blog/">Blog</a></li>
-                <li><a href="/press/">Press</a></li>
-                <li><a href="/about/">About</a></li>
+    <div id="networkStatus" aria-live="polite"></div>
+
+    <header class="site-header">
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="/" class="nav-link">PunkPOTUS</a></li>
+                <li><a href="/mint/" class="nav-link">Mint</a></li>
+                <li><a href="/tokenomics/" class="nav-link">Tokenomics</a></li>
+                <li><a href="/blog/" class="nav-link">Blog</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="container">
+    <main class="container">
         
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mint punkPOTUS</title>
-  <style>
-    .left-container {
-      width: 500px;
-      text-align: left;
-    }
-    .controls {
-      width: 300px;
-    }
-    .control-group {
-      margin-bottom: 20px;
-    }
-    h1 {
-      color: #333;
-      margin-top: 0;
-    }
-    h4 {
-      color: #555;
-      margin-bottom: 10px;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-      color: #666;
-    }
-    input[type="number"] {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    button:disabled {
-      background-color: #cccccc;
-      cursor: not-allowed;
-    }
-    #message {
-      margin-top: 20px;
-      padding: 10px;
-      border-radius: 4px;
-      font-weight: bold;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
 
-    .status-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 5px;
-    }
-    .status-value {
-      font-weight: bold;
-    }
-    #networkStatus {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      padding: 5px 10px;
-      border-radius: 4px;
-      font-weight: bold;
-    }
-    #connectWallet {
-      background-color: #007bff;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
-      margin-bottom: 20px;
-    }
-    #connectWallet:hover {
-      background-color: #0056b3;
-    }
-    #walletStatus {
-      margin-bottom: 20px;
-      font-weight: lighter;
-    }
-  </style>
-</head>
-<div id="networkStatus"></div>
-<body>
-<div id="networkStatus"></div>
+<div class="mint-container">
   <div class="left-container">
     <h1>punkPOTUS on Polygon</h1>
     <p>punkPOTUS won't make you rich or famous. Ok. Maybe famous.</p>
@@ -160,252 +68,472 @@
   </div>
 </div>
 
-<script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js"></script>
+<head>
+    <title>Tokenomics of punkPOTUS</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                padding: 0px;
+                background-color: #f0f0f0;
+            }
+            .container {
+                max-width: 800px;
+                margin: 0px auto;
+                padding: 20px;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+</head>
+
+<style>
+
+
+
+#networkStatus {
+    position: fixed;
+    top: 60px; /* Adjusted to account for header */
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+.mint-container {
+    display: flex;
+    gap: 0px;
+    max-width: 1200px;
+    margin: 20px auto; /* Added top margin to account for header */
+    padding: 0px;
+}
+
+.left-container {
+    flex: 1;
+    max-width: 500px;
+}
+
+.controls {
+    flex: 1;
+    max-width: 300px;
+}
+
+.control-group {
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: #333;
+    margin-top: 0;
+}
+
+h3, h4 {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.status-value {
+    font-weight: bold;
+}
+
+#connectWallet {
+    background-color: #007bff;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#connectWallet:hover {
+    background-color: #0056b3;
+}
+
+#walletStatus {
+    margin-bottom: 20px;
+    font-weight: lighter;
+    text-align: center;
+}
+
+.message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.pending {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mint-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .left-container,
+    .controls {
+        max-width: 100%;
+    }
+}
+</style>
+
 <script>
-  const contractABI = [
-    {
-      "inputs": [],
-      "name": "isSuperSeedSet",
-      "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "totalSupply",
-      "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "saleON",
-      "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [{"internalType": "uint256", "name": "_amount", "type": "uint256"}],
-      "name": "mint",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {"indexed": true, "internalType": "address", "name": "minter", "type": "address"},
-        {"indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256"},
-        {"indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256"}
-      ],
-      "name": "Minted",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [{"indexed": false, "internalType": "uint256", "name": "superSeed", "type": "uint256"}],
-      "name": "SuperSeedSet",
-      "type": "event"
+// Wait for ethers to load
+let ethersInterval = setInterval(() => {
+    if (window.ethers) {
+        clearInterval(ethersInterval);
+        initializeApp();
     }
-  ]
+}, 100);
 
-  const contractAddresses = {
-    polygon: '0x0892B028c28E0106c6Ee23150a0e8AeB004a82e8'
-  };
+function initializeApp() {
+    const contractABI = [
+        {
+            "inputs": [],
+            "name": "isSuperSeedSet",
+            "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "totalSupply",
+            "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "saleON",
+            "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [{"internalType": "uint256", "name": "_amount", "type": "uint256"}],
+            "name": "mint",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        }
+    ];
 
-  let provider;
-  let signer;
-  let contract;
-  let connectedAccount;
+    const POLYGON_CHAIN_ID = '0x89';
+    const contractAddresses = {
+        137: '0x0892B028c28E0106c6Ee23150a0e8AeB004a82e8'
+    };
 
-  const networks = {
-    1: 'Ethereum Mainnet',
-    5: 'Goerli Testnet',
-    1337: 'Localhost',
-    137: 'Polygon Mainnet'
-  };
+    let provider;
+    let signer;
+    let contract;
+    let connectedAccount;
+    let statusUpdateInterval;
 
-  async function init() {
-    if (typeof window.ethereum !== 'undefined') {
-      provider = new ethers.providers.Web3Provider(window.ethereum);
-      updateWalletStatus();
-      setupEventListeners();
-
-      // Check if already connected
-      const accounts = await provider.listAccounts();
-      if (accounts.length > 0) {
-        await connectWallet();
-      }
-    } else {
-      console.log('Please install MetaMask!');
-      showMessage('Please install MetaMask to use this dApp.', 'error');
-    }
-  }
-
-  async function updateContractStatus() {
-    if (!contract) {
-      console.log('Contract not initialized');
-      return;
+    async function setupContract() {
+        try {
+            contract = new ethers.Contract(
+                contractAddresses[137],
+                contractABI,
+                signer
+            );
+            await updateContractStatus();
+        } catch (error) {
+            console.error('Contract setup error:', error);
+            showMessage('Error setting up contract. Please ensure you are on Polygon network.', 'error');
+        }
     }
 
-    try {
-      const [isSuperSeedSet, totalSupply, saleON] = await Promise.all([
-        contract.isSuperSeedSet(),
-        contract.totalSupply(),
-        contract.saleON()
-      ]);
-
-      document.getElementById('superSeedStatus').textContent = isSuperSeedSet ? 'Yes' : 'No';
-      document.getElementById('totalSupply').textContent = totalSupply.toString();
-      document.getElementById('saleStatus').textContent = saleON ? 'Active' : 'Inactive';
-    } catch (error) {
-      console.error('Error updating contract status:', error);
-      showMessage('Error fetching contract status.', 'error');
-    }
-  }
-
-  // This function should be called after successful wallet connection
-  async function setupContractAndStatus() {
-    await setupContract();
-    await updateContractStatus();
-  }
-
-  // Update the connectWallet function to call setupContractAndStatus
-  async function connectWallet() {
-    try {
-      await provider.send("eth_requestAccounts", []);
-      signer = provider.getSigner();
-      connectedAccount = await signer.getAddress();
-
-      await setupContractAndStatus();
-      updateNetworkStatus();
-      updateWalletStatus();
-
-      window.ethereum.on('chainChanged', handleChainChanged);
-      window.ethereum.on('accountsChanged', handleAccountsChanged);
-    } catch (error) {
-      console.error('User denied account access or error occurred:', error);
-      showMessage('Failed to connect wallet.', 'error');
-    }
-    startContractStatusUpdates();
-  }
-
-  async function setupContract() {
-    const network = await provider.getNetwork();
-    const contractAddress = getContractAddress(network.chainId);
-    contract = new ethers.Contract(contractAddress, contractABI, signer);
-  }
-
-  // Add this function to periodically update the contract status
-  function startContractStatusUpdates() {
-    updateContractStatus(); // Initial update
-    setInterval(updateContractStatus, 30000); // Update every 30 seconds
-  }
-
-  function getContractAddress(chainId) {
-    switch(chainId) {
-      case 1: return contractAddresses.mainnet;
-      case 5: return contractAddresses.goerli;
-      case 1337: return contractAddresses.localhost;
-      case 137: return contractAddresses.polygon;
-      default: throw new Error('Unsupported network');
-    }
-  }
-
-  async function updateNetworkStatus() {
-    const network = await provider.getNetwork();
-    const networkName = networks[network.chainId] || 'Unknown Network';
-    const networkStatus = document.getElementById('networkStatus');
-    networkStatus.textContent = `Connected to: ${networkName}`;
-    networkStatus.style.backgroundColor = network.chainId === 137 ? '#d4edda' : '#fff3cd';
-    networkStatus.style.color = network.chainId === 137 ? '#155724' : '#856404';
-  }
-
-  function updateWalletStatus() {
-    const walletStatus = document.getElementById('walletStatus');
-    const mintButton = document.getElementById('mintButton');
-    const connectWalletButton = document.getElementById('connectWallet');
-
-    if (connectedAccount) {
-      walletStatus.textContent = `Connected: ${connectedAccount.substring(0, 6)}...${connectedAccount.substring(38)}`;
-      mintButton.disabled = false;
-      connectWalletButton.textContent = 'Wallet Connected';
-      connectWalletButton.disabled = true;
-    } else {
-      walletStatus.textContent = 'Wallet not connected';
-      mintButton.disabled = true;
-      connectWalletButton.textContent = 'Connect Wallet';
-      connectWalletButton.disabled = false;
-    }
-  }
-
-  function handleAccountsChanged(accounts) {
-    if (accounts.length === 0) {
-      console.log('Please connect to MetaMask.');
-      connectedAccount = null;
-      contract = null;
-    } else if (accounts[0] !== connectedAccount) {
-      connectedAccount = accounts[0];
-      setupContract();
-    }
-    updateWalletStatus();
-    updateContractStatus();
-  }
-
-  function handleChainChanged() {
-    window.location.reload();
-  }
-
-  function setupEventListeners() {
-    document.getElementById('connectWallet').addEventListener('click', connectWallet);
-    document.getElementById('mintButton').addEventListener('click', mint);
-  }
-
-  async function mint() {
-    if (!contract) {
-      showMessage('Please connect your wallet first.', 'error');
-      return;
+    async function switchToPolygon() {
+        try {
+            await window.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: POLYGON_CHAIN_ID }],
+            });
+        } catch (error) {
+            if (error.code === 4902) {
+                await window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [{
+                        chainId: POLYGON_CHAIN_ID,
+                        chainName: 'Polygon Mainnet',
+                        nativeCurrency: {
+                            name: 'MATIC',
+                            symbol: 'MATIC',
+                            decimals: 18
+                        },
+                        rpcUrls: ['https://polygon-rpc.com/'],
+                        blockExplorerUrls: ['https://polygonscan.com/']
+                    }]
+                });
+            } else {
+                throw error;
+            }
+        }
     }
 
-    const mintAmount = document.getElementById('mintAmount').value;
-    if (mintAmount < 1 || mintAmount > 24) {
-      showMessage('Please enter a valid amount between 1 and 24.', 'error');
-      return;
+    async function updateContractStatus() {
+        if (!contract) return;
+
+        try {
+            const [isSuperSeedSet, totalSupply, saleON] = await Promise.all([
+                contract.isSuperSeedSet(),
+                contract.totalSupply(),
+                contract.saleON()
+            ]);
+
+            document.getElementById('superSeedStatus').textContent = isSuperSeedSet ? 'Yes' : 'No';
+            document.getElementById('totalSupply').textContent = totalSupply.toString();
+            document.getElementById('saleStatus').textContent = saleON ? 'Active' : 'Inactive';
+        } catch (error) {
+            console.error('Error updating contract status:', error);
+            showMessage('Error fetching contract status', 'error');
+        }
     }
 
-    try {
-      const tx = await contract.mint(mintAmount);
-      showMessage('Transaction sent. Waiting for confirmation...', 'success');
+    function updateWalletStatus() {
+        const walletStatus = document.getElementById('walletStatus');
+        const mintButton = document.getElementById('mintButton');
+        const connectWalletButton = document.getElementById('connectWallet');
 
-      try {
-        await tx.wait();
-        showMessage(`Successfully minted ${mintAmount} token(s)!`, 'success');
-      } catch (confirmError) {
-        console.error('Error during transaction confirmation:', confirmError);
-        showMessage('Transaction failed during confirmation. Please check your wallet for details.', 'error');
-      }
-
-      updateContractStatus();
-    } catch (error) {
-      console.error('Error minting:', error);
-      showMessage(`Error minting: ${error.message}`, 'error');
+        if (connectedAccount) {
+            walletStatus.textContent = `Connected: ${connectedAccount.substring(0, 6)}...${connectedAccount.substring(38)}`;
+            mintButton.disabled = false;
+            connectWalletButton.textContent = 'Wallet Connected';
+            connectWalletButton.disabled = true;
+        } else {
+            walletStatus.textContent = 'Wallet not connected';
+            mintButton.disabled = true;
+            connectWalletButton.textContent = 'Connect Wallet';
+            connectWalletButton.disabled = false;
+        }
     }
-  }
 
-  function showMessage(message, type) {
-    const messageElement = document.getElementById('message');
-    messageElement.textContent = message;
-    messageElement.className = type;
-  }
+    async function mint() {
+        if (!contract) {
+            showMessage('Please connect your wallet first', 'error');
+            return;
+        }
 
-  init();
+        const mintAmount = parseInt(document.getElementById('mintAmount').value);
+        if (mintAmount < 1 || mintAmount > 24) {
+            showMessage('Please enter a valid amount between 1 and 24', 'error');
+            return;
+        }
+
+        try {
+            const mintButton = document.getElementById('mintButton');
+            mintButton.disabled = true;
+
+            showMessage('Estimating gas...', 'pending');
+            const gasEstimate = await contract.estimateGas.mint(mintAmount);
+
+            showMessage('Initiating transaction...', 'pending');
+            const tx = await contract.mint(mintAmount, {
+                gasLimit: Math.floor(gasEstimate * 1.2),
+            });
+
+            showMessage('Transaction sent. Waiting for confirmation...', 'pending');
+            const receipt = await tx.wait();
+
+            showMessage(`Successfully minted ${mintAmount} token(s)!`, 'success');
+            await updateContractStatus();
+        } catch (error) {
+            console.error('Minting error:', error);
+            showMessage('Transaction failed: ' + error.message, 'error');
+        } finally {
+            document.getElementById('mintButton').disabled = false;
+        }
+    }
+
+    function showMessage(message, type) {
+        const messageElement = document.getElementById('message');
+        messageElement.textContent = message;
+        messageElement.className = `message ${type}`;
+
+        if (type === 'success') {
+            setTimeout(() => {
+                messageElement.textContent = '';
+                messageElement.className = 'message';
+            }, 5000);
+        }
+    }
+
+    function setupEventListeners() {
+        document.getElementById('connectWallet').addEventListener('click', connectWallet);
+        document.getElementById('mintButton').addEventListener('click', mint);
+
+        if (window.ethereum) {
+            window.ethereum.on('chainChanged', () => window.location.reload());
+            window.ethereum.on('accountsChanged', async (accounts) => {
+                if (accounts.length === 0) {
+                    connectedAccount = null;
+                    contract = null;
+                    updateWalletStatus();
+                    showMessage('Wallet disconnected', 'error');
+                } else {
+                    await connectWallet();
+                }
+            });
+        }
+    }
+
+    async function connectWallet() {
+        try {
+            if (statusUpdateInterval) {
+                clearInterval(statusUpdateInterval);
+            }
+
+            const accounts = await window.ethereum.request({
+                method: 'eth_requestAccounts'
+            });
+
+            provider = new ethers.providers.Web3Provider(window.ethereum);
+            signer = provider.getSigner();
+            connectedAccount = accounts[0];
+
+            const chainId = await window.ethereum.request({
+                method: 'eth_chainId'
+            });
+
+            if (chainId !== POLYGON_CHAIN_ID) {
+                await switchToPolygon();
+            }
+
+            await setupContract();
+            updateWalletStatus();
+            startContractStatusUpdates();
+
+            showMessage('Wallet connected successfully!', 'success');
+        } catch (error) {
+            console.error('Connection error:', error);
+            showMessage('Failed to connect wallet: ' + error.message, 'error');
+        }
+    }
+
+    function startContractStatusUpdates() {
+        if (statusUpdateInterval) {
+            clearInterval(statusUpdateInterval);
+        }
+        updateContractStatus();
+        statusUpdateInterval = setInterval(updateContractStatus, 30000);
+    }
+
+    async function init() {
+        try {
+            if (typeof window.ethereum !== 'undefined') {
+                provider = new ethers.providers.Web3Provider(window.ethereum);
+
+                const accounts = await provider.listAccounts();
+                if (accounts.length > 0) {
+                    await connectWallet();
+                }
+
+                setupEventListeners();
+            } else {
+                showMessage('Please install MetaMask to use this dApp.', 'error');
+            }
+        } catch (error) {
+            console.error('Initialization error:', error);
+            showMessage('Failed to initialize: ' + error.message, 'error');
+        }
+    }
+
+    // Initialize the app
+    init();
+}
 </script>
-</body>
+    </main>
 
-    </div>
+<footer class="site-footer">
+    <p>&copy; 2024 punkPOTUS. All rights reserved. |
+    <a href="https://x.com/dirtysalsa">Twitter</a> |
+    <a href="https://warpcast.com/digifilm.eth">Warpcast</a> |
+    <a href="https://discord.gg/bTAnHMsq4v">Discord</a></p>
+</footer>
 
-    <footer>
-        <p>&copy; 2024 punkPOTUS. All rights reserved.</p>
-    </footer>
+
+
+    <!-- Add basic script for network status -->
+    <script>
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+
+        function updateNetworkStatus() {
+            const statusDiv = document.getElementById('networkStatus');
+            if (navigator.onLine) {
+                statusDiv.textContent = '';
+                statusDiv.style.display = 'none';
+            } else {
+                statusDiv.textContent = 'You are currently offline';
+                statusDiv.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>

@@ -3,28 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
     <title>Index - punkPOTUS</title>
     <link rel="stylesheet" href="/css/style.css">
+    <!-- Add favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
-<div id="networkStatus"></div>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">punkPOTUS</a></li>
-                <li><a href="/mint/">Mint</a></li>
-                <li><a href="/tokenomics/">Tokenomics</a></li>
-                <li><a href="/blog/">Blog</a></li>
-                <li><a href="/press/">Press</a></li>
-                <li><a href="/about/">About</a></li>
+    <div id="networkStatus" aria-live="polite"></div>
+
+    <header class="site-header">
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="/" class="nav-link">PunkPOTUS</a></li>
+                <li><a href="/mint/" class="nav-link">Mint</a></li>
+                <li><a href="/tokenomics/" class="nav-link">Tokenomics</a></li>
+                <li><a href="/blog/" class="nav-link">Blog</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="container">
+    <main class="container">
         
 <head>
   <title>Generatoe</title>
+  <head>
+      <title>Tokenomics of punkPOTUS</title>
+          <style>
+              body {
+                  font-family: 'Arial', sans-serif;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: center;
+                  min-height: 100vh;
+                  margin: 0;
+                  padding: 0px;
+                  background-color: #f0f0f0;
+              }
+              .container {
+                  max-width: 800px;
+                  margin: 0px auto;
+                  padding: 20px;
+                  background-color: white;
+                  border-radius: 10px;
+                  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+              }
+          </style>
+  </head>
+
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -57,22 +84,23 @@
     input[type="checkbox"] {
       margin-right: 5px;
     }
-    :root {
-      --hue: 0;
-      --sat: 0%;
-    }
-    .pr { fill: hsl(var(--hue), var(--sat), 50%); }
-    .sc { fill: hsl(calc(var(--hue) + 120), var(--sat), 50%); }
-    .tr { fill: hsl(calc(var(--hue) + 240), var(--sat), 50%); }
-    .lip { fill: hsl(calc(var(--hue) + 120), calc(var(--sat) * 0.5), 40%); }
-    .suit { fill: hsl(calc(var(--hue) + 120), calc(var(--sat) * 0.25), 50%); }
-    .vest { fill: hsl(calc(var(--hue) + 180), calc(var(--sat) * 0.5), 50%); }
-    .skin { fill: hsl(var(--hue), calc(var(--sat) * 0.5), 75%); }
-    .sha { fill: hsl(calc(var(--hue) + 180), var(--sat), 25%); }
-    .wh { fill: #fff; }
-    .au { fill: hsl(51, var(--sat), 50%); }
-    .fb { fill: hsl(216, var(--sat), 40%); }
-    .fw { fill: hsl(39, var(--sat), 84%); }
+    :root { --hue: 0; --sat: 100%; --lightness: 55%;}
+
+            .i{opacity:0}
+            .t5{opacity:.5}
+
+            .pr{fill:hsl(var(--hue),var(--sat), var(--lightness))}
+            .sc{fill:hsl(calc(var(--hue) + 120),var(--sat), var(--lightness))}
+            .tr{fill:hsl(calc(var(--hue) + 240),var(--sat), var(--lightness))}
+            .wh{fill:#fff}.au{fill:hsl(51,var(--sat), var(--lightness))}
+            .suit{fill:hsl(calc(var(--hue) + 120),calc(var(--sat)*.25), var(--lightness))}
+            .vest{fill:hsl(calc(var(--hue) + 180),calc(var(--sat)*.5), var(--lightness))}
+
+            .lip {fill: hsl(calc(var(--hue) + 120), calc(var(--sat) * .5), calc(var(--lightness) * .8));}
+            .skin {fill: hsl(var(--hue), calc(var(--sat) * .5), calc(var(--lightness) * 1.5));}
+            .sha {fill: hsl(calc(var(--hue) + 180), var(--sat), calc(var(--lightness) * .5));}
+            .fb {fill: hsl(216, var(--sat), calc(var(--lightness) * .8));}
+            .fw {fill: hsl(39, var(--sat), calc(var(--lightness) * 1.68));}var(--sat), 84%); }
     .g0, .g1, .g2, .g3, .g4, .g5, .g6, .s0, .s1, .s2, .s3, .s4, .s5, .s6, .lr0 { opacity: 0; }
     .hue-info {
       display: flex;
@@ -166,8 +194,8 @@
         <g class="g2 i">
           <path class="wh"
                 d="m393 236 2 55 89-2c18-33 10-34 30-2l89-3-2-55-208 7zm85 43-69 3-1-37 69-2 1 36zm110-4-69 3-1-37 69-2 1 36z" />
-          <path id="blu" class="red t5" d="m588 275-69 3-1-37 69-2z" />
-          <path id="red" class="blu t5" d="m478 279-69 3-1-37 69-2z" />
+    <path class="t5" fill="red" d="m588 275-69 3-1-37 69-2z" />
+    <path class="t5" fill="blue" d="m478 279-69 3-1-37 69-2z" />
         </g>
         <g class="g3 i">
           <path class="sc t5"
@@ -231,7 +259,7 @@
       <input type="range" id="hueSlider" min="0" max="360" value="0">
     </div>
     <div class="control-group">
-      <h4>Eyewear (1/28 chance)</h4>
+      <h4>Eyewear (1/56 chance)</h4>
       <label><input type="checkbox" id="toggleGlasses0" class="toggle" data-class="g0"> Aviator Joe</label>
       <label><input type="checkbox" id="toggleGlasses1" class="toggle" data-class="g1"> Pixel</label>
       <label><input type="checkbox" id="toggleGlasses2" class="toggle" data-class="g2"> Anaglyph 3D</label>
@@ -340,122 +368,7 @@
     svgName.textContent = svgNameText;
   }
 
-  function getPoliticalJoke(probability) {
-    if (probability === 1/360) {
-      return "Your chances are as slim as a politician keeping all their campaign promises!";
-    } else if (probability === 1/360 * 1/28) {
-      return "You're about as likely to win as a third-party candidate in a two-party system.";
-    } else if (probability === 1/360 * 1/100) {
-      return "These odds are lower than Congress's approval rating!";
-    } else if (probability === 1/360 * 1/28 * 1/28) {
-      return "You have a better chance of finding bipartisan agreement on a controversial bill.";
-    } else if (probability === 1/360 * 1/28 * 1/100) {
-      return "Your odds are worse than a snowball's chance in a climate change debate.";
-    } else if (probability === 1/360 * 1/28 * 1/100) {
-      return "You're more likely to see a filibuster-free Senate session than hit this combo.";
-    } else if (probability === 1/360 * 1/28 * 1/28 * 1/100) {
-      return "Congratulations! You're as rare as a scandal-free election year.";
-    } else {
-      return "Your chances are as unpredictable as a politician's stance on a hot-button issue.";
-    }
-  }
 
-  function getPoliticalJoke(probability) {
-    const jokes = [
-      "Your chances are as slim as a politician keeping all their campaign promises!",
-      "You're about as likely to win as a third-party candidate in a two-party system.",
-      "These odds are lower than Congress's approval rating!",
-      "You have a better chance of finding bipartisan agreement on a controversial bill.",
-      "Your odds are worse than a snowball's chance in a climate change debate.",
-      "You're more likely to see a filibuster-free Senate session than hit this combo.",
-      "Congratulations! You're as rare as a scandal-free election year.",
-      "Your chances are as unpredictable as a politician's stance on a hot-button issue.",
-      "You're more likely to see a budget surplus than this combination.",
-      "These odds are slimmer than the margin in a Florida recount!",
-      "You have a better shot at understanding the tax code than hitting this combo.",
-      "Your probability is lower than voter turnout in a mid-term election.",
-      "You're more likely to see a politician admit they were wrong than get this result.",
-      "These odds are longer than a State of the Union address.",
-      "You have a better chance of finding a non-partisan news source.",
-      "Your odds are worse than getting a straight answer at a press conference.",
-      "This combo is rarer than a politician without a Twitter account.",
-      "You're more likely to see world peace than this probability.",
-      "Your chances are slimmer than the fine print in a healthcare bill.",
-      "You have better odds of finding a unicorn in the Capitol building.",
-      "This probability is lower than the chances of a quiet day in Washington.",
-      "You're more likely to see pigs fly through the Senate chamber.",
-      "Your odds are worse than finding a needle in a bureaucratic haystack.",
-      "This combo is as rare as a unanimous Supreme Court decision.",
-      "You have a better chance of understanding parliamentary procedure.",
-      "Your probability is lower than the chances of a brief political speech.",
-      "You're more likely to see a balanced budget than hit this combination.",
-      "These odds are slimmer than the chances of a drama-free election.",
-      "You have better odds of naming all 27 amendments from memory.",
-      "This combo is rarer than a politician turning down a photo op.",
-      "Your chances are lower than finding common ground in a partisan debate.",
-      "You're more likely to see a pay cut for Congress than this result.",
-      "This probability is rarer than a straightforward bill title.",
-      "Your odds are worse than predicting the outcome of a political scandal.",
-      "You have a better chance of simplifying the tax code than hitting this.",
-      "This combo is as unlikely as a paperwork-free government process.",
-      "Your probability is lower than the chances of a leak-proof administration.",
-      "You're more likely to see a politician refuse a campaign donation.",
-      "These odds are slimmer than the margin between political ideologies.",
-      "You have better chances of finding the end of a filibuster.",
-      "This combo is rarer than a clear stance on a complex issue.",
-      "Your odds are worse than getting everyone to agree on healthcare reform.",
-      "You're more likely to see a one-page bill pass through Congress.",
-      "This probability is lower than the chances of a gaffe-free campaign.",
-      "Your chances are slimmer than finding a typo-free government website.",
-      "You have better odds of witnessing a productive town hall meeting.",
-      "This combo is as rare as a politician admitting they haven't read the bill.",
-      "Your probability is lower than the chances of a zero-dollar campaign.",
-      "You're more likely to see instant universal consensus than this result."
-    ];
-
-    // Use the probability to select a joke, ensuring consistent selection for each probability
-    const index = Math.floor(probability * jokes.length * 1000000) % jokes.length;
-    return jokes[index];
-  }
-
-  function getPoliticalJoke(probability) {
-    const jokes = [
-      // ... (jokes array remains the same)
-    ];
-
-    // Use a consistent method for both jokes and statements
-    const index = Math.floor(probability * jokes.length);
-    return jokes[index % jokes.length];
-  }
-
-  function getProbabilityStatement(probability) {
-    const statements = [
-      // ... (statements array remains the same)
-    ];
-
-    const index = Math.floor(probability * statements.length);
-    return statements[index % statements.length];
-  }
-
-  function getPoliticalJoke(probability) {
-    if (probability === 1/360) {
-      return "These odds are longer than a State of the Union address.";
-    } else if (probability === 1/360 * 1/28) {
-      return "You're about as likely to win as a third-party candidate in a two-party system.";
-    } else if (probability === 1/360 * 1/100) {
-      return "These odds are lower than Congress's approval rating!";
-    } else if (probability === 1/360 * 1/28 * 1/28) {
-      return "You have a better chance of finding bipartisan agreement on a controversial bill.";
-    } else if (probability === 1/360 * 1/28 * 1/100) {
-      return "Your odds are worse than a snowball's chance in a climate change debate.";
-    } else if (probability === 1/360 * 1/28 * 1/100) {
-      return "This combo is as rare as a unanimous Supreme Court decision.";
-    } else if (probability === 1/360 * 1/28 * 1/28 * 1/100) {
-      return "This combo is rarer than a politician without a Twitter account.";
-    } else {
-      return "Your chances are as unpredictable as a politician's stance on a hot-button issue.";
-    }
-  }
 
   function calculateProbability() {
     const hueValue = hueSlider.value;
@@ -468,7 +381,7 @@
       const classToToggle = toggle.dataset.class;
       if (toggle.checked) {
         if (classToToggle.startsWith('g')) {
-          glassesProbability = 1 / 28;
+          glassesProbability = 1 / 56;
         } else if (classToToggle.startsWith('s')) {
           shirtProbability = 1 / 28;
         } else if (classToToggle === 'lr0') {
@@ -479,13 +392,11 @@
 
     const totalProbability = hueProbability * glassesProbability * shirtProbability * laserProbability;
     const percentageProbability = (totalProbability * 100).toFixed(6);
-    const politicalJoke = getPoliticalJoke(totalProbability);
 
-    messageDiv.textContent = `The probability of hitting this combination is ${percentageProbability}%`;
-    messageDiv.textContent += `\n${politicalJoke}`;
+    messageDiv.textContent = `The probability of getting this PunkPOTUS is ${percentageProbability}%`;
   }
 
-          function updateMessage() {
+    function updateMessage() {
     const saturation = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sat').trim());
     if (saturation === 0) {
       messageDiv.textContent = "Brat Candidate Kamala Harris.";
@@ -552,7 +463,7 @@
     const hueName = getHueName(randomHue);
     hueInfo.textContent = `${hueName} ${randomHue}`;
 
-    const randomGlasses = Math.floor(Math.random() * 28);
+    const randomGlasses = Math.floor(Math.random() * 56);
     if (randomGlasses < 7) {
       document.getElementById(`toggleGlasses${randomGlasses}`).checked = true;
     }
@@ -589,17 +500,37 @@
   document.documentElement.style.setProperty('--hue', '0');
   document.documentElement.style.setProperty('--sat', '0%');
   hueInfo.textContent = `Red 0`;
-  svgName.textContent = "punkPOTUS NFT Simulator";
+  svgName.textContent = "PunkPOTUS NFT Simulator";
   updateMessage();
 </script>
 </body>
-</body>
-</html>
 
-    </div>
+    </main>
 
-    <footer>
-        <p>&copy; 2024 punkPOTUS. All rights reserved.</p>
-    </footer>
+<footer class="site-footer">
+    <p>&copy; 2024 punkPOTUS. All rights reserved. |
+    <a href="https://x.com/dirtysalsa">Twitter</a> |
+    <a href="https://warpcast.com/digifilm.eth">Warpcast</a> |
+    <a href="https://discord.gg/bTAnHMsq4v">Discord</a></p>
+</footer>
+
+
+
+    <!-- Add basic script for network status -->
+    <script>
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+
+        function updateNetworkStatus() {
+            const statusDiv = document.getElementById('networkStatus');
+            if (navigator.onLine) {
+                statusDiv.textContent = '';
+                statusDiv.style.display = 'none';
+            } else {
+                statusDiv.textContent = 'You are currently offline';
+                statusDiv.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
